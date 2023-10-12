@@ -50,24 +50,24 @@ from lxml import etree
 # для сайта https://bashgazet.ru/articles/milli-proekttar Национальные проекты
 
 
-link_7 = 'https://bashgazet.ru/articles/milli-proekttar'
-
-# создали список ссылок на статьи
-def search_links_7(link):
-    url = requests.get(link)
-
-    soup = BeautifulSoup(url.content, 'html.parser')
-    dom = etree.HTML(str(soup))
-    all_links = dom.xpath('//a[@class="item item"]/@href')
-    return all_links
-
-full_link_list_7 = []
-def uni_parserd_7(link):
-    for item in link:
-        if item not in full_link_list_7:
-            full_link = 'https://bashgazet.ru'+item
-            full_link_list_7.append(full_link)
-    print(full_link_list_5)
+# link_7 = 'https://bashgazet.ru/articles/milli-proekttar'
+#
+# # создали список ссылок на статьи
+# def search_links_7(link):
+#     url = requests.get(link)
+#
+#     soup = BeautifulSoup(url.content, 'html.parser')
+#     dom = etree.HTML(str(soup))
+#     all_links = dom.xpath('//a[@class="item item"]/@href')
+#     return all_links
+#
+# full_link_list_7 = []
+# def uni_parserd_7(link):
+#     for item in link:
+#         if item not in full_link_list_7:
+#             full_link = 'https://bashgazet.ru'+item
+#             full_link_list_7.append(full_link)
+#     print(full_link_list_5)
     # title = []
 #     content = []
 #     for elem in full_link_list_7:
@@ -87,3 +87,52 @@ def uni_parserd_7(link):
 #
 # print(len(full_title_7))
 # print(len(full_content_7))
+# для сайта https://gulshat1.ucoz.net/news/rss/ ВСЕ КАТЕГОРИИ
+
+
+link_6 = 'https://ataisal.com/articles/m-ni-t'
+
+# создали список ссылок на статьи
+def search_links_6(link):
+    url = requests.get(link)
+
+    soup = BeautifulSoup(url.content, 'html.parser')
+    dom = etree.HTML(str(soup))
+    all_links = dom.xpath('//a[@class="item item"]/@href')
+    return all_links
+
+full_link_list_6 = []
+def uni_parserd_6(link):
+    for item in link:
+        if item not in full_link_list_6:
+            full_link = 'https://bashgazet.ru'+item
+            full_link_list_6.append(full_link)
+    title = []
+    content = []
+    for elem in full_link_list_6:
+        url = requests.get(elem)
+        soup = BeautifulSoup(url.content, 'html.parser')
+        all_content = soup.find_all('body')
+        for j in all_content:
+            title.append(j.find('h1', class_='h1').text)
+            content.append(j.find('div', class_='paragraph serif-text').text)
+    return title, content
+
+def search_cat_6(full_title):
+    catgory_2 =[]
+    i=0
+    for i in range(len(full_title)):
+        i+=1
+        catgory_2.append('мәҙәниәт')
+    return catgory_2
+
+search_link_6 = search_links_6(link_6)
+full_content_6 = uni_parserd_6(search_link_6)
+
+full_title_6 = full_content_6[0]
+full_content_6 = full_content_6[1]
+list_cat_6 = search_cat_6(full_title_6)
+
+print(len(full_title_6))
+print(len(full_content_6))
+print(len(list_cat_6))

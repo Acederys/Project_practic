@@ -67,11 +67,23 @@ def uni_parserd(link):
                 title.append(elem.find('div', class_='eTitle').text)
                 content.append(elem.find('td',class_='eMessage').text)
     return title, content
-# для сайта gulshat1.ucoz.net
-search_links(link)
-link_collector(search_links(link))
-uni_parserd(list_link)
 
+def search_cat(link):
+    url = requests.get(link)
+    soup = BeautifulSoup(url.content, 'xml')
+    all_category = soup.find_all('item')
+    cat_list = []
+    for g in all_category:
+        cat_list.append(g.find('dc:creator').text)
+    return cat_list
+
+search_links_1 = search_links(link)
+link_collector_1 = link_collector(search_links_1)
+uni_parserd_full = uni_parserd(list_link)
+list_category_1 = search_cat(link)
+
+full_title_1 = uni_parserd_full[0]
+full_content_1 = uni_parserd_full[1]
 # для сайта https://kulturarb.ru/ba/news
 
 
@@ -103,11 +115,20 @@ def uni_parserd_2(link):
             content.append(j.find('div', class_='item-text').text)
     return title, content
 
+def search_cat_2(full_title):
+    catgory_2 =[]
+    i=0
+    for i in range(len(full_title)):
+        i+=1
+        catgory_2.append('мәҙәниәт')
+    return catgory_2
+
 search_link = search_links_2(link_2)
 full_content = uni_parserd_2(search_link)
 
 full_title = full_content[0]
 full_content = full_content[1]
+list_cat_2 =search_cat_2(full_title)
 
 # для сайта https://www.ye02.ru/rss.xml ВСЕ КАТЕГОРИИ
 link_3 = 'https://www.ye02.ru/rss.xml'
@@ -122,11 +143,22 @@ def uni_parserd_3(link):
         title.append(k.find('title').text)
         content.append(k.find('turbo:content').text)
     return title, content
+
+def search_cat_3(link):
+    url = requests.get(link)
+    soup = BeautifulSoup(url.content, 'xml')
+    all_category = soup.find_all('item')
+    cat_list = []
+    for g in all_category:
+        cat_list.append(g.find('category').text)
+    return cat_list
+
 content_3 = uni_parserd_3(link_3)
 full_title_3 = content_3[0]
 full_content_3 = content_3[1]
+list_category_3 = search_cat_3(link_3)
 
-# для сайта https://misrbash.moy.su/news/rss/
+# для сайта https://misrbash.moy.su/news/rss/ ВСЕ КАТЕГОРИИ
 link_4 = 'https://misrbash.moy.su/news/rss/'
 
 def uni_parserd_4(link):
@@ -137,12 +169,22 @@ def uni_parserd_4(link):
     content = []
     for k in all_item:
         title.append(k.find('title').text)
-        content.append(k.find('turbo:content').text)
+        content.append(k.find('content:encoded').text)
     return title, content
-content_4 = uni_parserd_3(link_3)
+
+def search_cat_4(link):
+    url = requests.get(link)
+    soup = BeautifulSoup(url.content, 'xml')
+    all_category = soup.find_all('item')
+    cat_list = []
+    for g in all_category:
+        cat_list.append(g.find('creator').text)
+    return cat_list
+
+content_4 = uni_parserd_4(link_4)
 full_title_4 = content_4[0]
 full_content_4 = content_4[1]
-
+list_category_4 = search_cat_4(link_4)
 # для сайта https://bashgazet.ru/articles/-bi-t-m-m-ni-t КУЛЬТУРА
 
 link_5 = 'https://bashgazet.ru/articles/-bi-t-m-m-ni-t'
@@ -173,15 +215,24 @@ def uni_parserd_5(link):
             title.append(j.find('h1', class_='h1').text)
             content.append(j.find('div', class_='paragraph serif-text').text)
     return title, content
-#
+
+def search_cat_5(full_title):
+    catgory_2 =[]
+    i=0
+    for i in range(len(full_title)):
+        i+=1
+        catgory_2.append('мәҙәниәт')
+    return catgory_2
+
 search_link_5 = search_links_5(link_5)
 full_content_5 = uni_parserd_5(search_link_5)
 
 full_title_5 = full_content_5[0]
 full_content_5 = full_content_5[1]
+list_cat_5 =search_cat_5(full_title_5)
+
 
 # для сайта https://ataisal.com/articles/m-ni-t КУЛЬТУРА
-
 
 link_6 = 'https://ataisal.com/articles/m-ni-t'
 
@@ -210,20 +261,30 @@ def uni_parserd_6(link):
             title.append(j.find('h1', class_='h1').text)
             content.append(j.find('div', class_='paragraph serif-text').text)
     return title, content
-#
+
+def search_cat_6(full_title):
+    catgory_2 =[]
+    i=0
+    for i in range(len(full_title)):
+        i+=1
+        catgory_2.append('мәҙәниәт')
+    return catgory_2
+
 search_link_6 = search_links_6(link_6)
 full_content_6 = uni_parserd_6(search_link_6)
 
 full_title_6 = full_content_6[0]
 full_content_6 = full_content_6[1]
-
+list_cat_6 = search_cat_6(full_title_6)
 
 # сбор всех заголовков и текстов в один список, для премещения в словарь
-title_list = uni_parserd(list_link)[0] + full_title + full_title_3 + full_title_4 + full_title_5
-content_list = uni_parserd(list_link)[1] + full_content + full_content_3 + full_content_4 + full_content_5
+title_list = full_title_1 + full_title + full_title_3 + full_title_4 + full_title_5 + full_title_6
+content_list = full_content_1 + full_content + full_content_3 + full_content_4 + full_content_5 + full_content_6
+category_list = list_category_1 + list_cat_2 + list_category_3 + list_category_4 + list_cat_5 + list_cat_6
 print(len(title_list))
 print(len(content_list))
-all_dict = {'Title': title_list, 'Content': content_list}
+print(len(category_list))
+all_dict = {'Title': title_list, 'Content': content_list, 'Category': category_list}
 
 content_frame = pd.DataFrame(all_dict)
 
