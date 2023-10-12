@@ -47,18 +47,43 @@ from lxml import etree
 # # content_frame = pd.DataFrame(all_dict)
 # #
 # # content_frame.to_csv (r' result.csv', index= False )
-link_3 = 'https://www.ye02.ru/rss.xml'
+# для сайта https://bashgazet.ru/articles/milli-proekttar Национальные проекты
 
-def uni_parserd(link):
+
+link_7 = 'https://bashgazet.ru/articles/milli-proekttar'
+
+# создали список ссылок на статьи
+def search_links_7(link):
     url = requests.get(link)
-    soup = BeautifulSoup(url.content, 'xml')
-    all_item = soup.find_all('item')
-    title = []
-    content = []
-    for k in all_item:
-        title.append(k.find('title').text)
-        content.append(k.find('turbo:content').text)
-    return title, content
-content_3 = uni_parserd(link_3)
-full_title_3 = content_3[0]
-full_content_3 = content_3[1]
+
+    soup = BeautifulSoup(url.content, 'html.parser')
+    dom = etree.HTML(str(soup))
+    all_links = dom.xpath('//a[@class="item item"]/@href')
+    return all_links
+
+full_link_list_7 = []
+def uni_parserd_7(link):
+    for item in link:
+        if item not in full_link_list_7:
+            full_link = 'https://bashgazet.ru'+item
+            full_link_list_7.append(full_link)
+    print(full_link_list_5)
+    # title = []
+#     content = []
+#     for elem in full_link_list_7:
+#         url = requests.get(elem)
+#         soup = BeautifulSoup(url.content, 'html.parser')
+#         all_content = soup.find_all('body')
+#         for j in all_content:
+#             title.append(j.find('h1', class_='h1').text)
+#             content.append(j.find('div', class_='paragraph serif-text').text)
+#     return title, content
+# #
+# search_link_7 = search_links_7(link_7)
+# full_content_7 = uni_parserd_7(search_link_7)
+#
+# full_title_7 = full_content_7[0]
+# full_content_7 = full_content_7[1]
+#
+# print(len(full_title_7))
+# print(len(full_content_7))

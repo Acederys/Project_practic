@@ -4,6 +4,9 @@ import csv
 import pandas as pd
 from lxml import etree
 # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+
+# для сайта https://gulshat1.ucoz.net/news/rss/ ВСЕ КАТЕГОРИИ
+
 link = 'https://gulshat1.ucoz.net/news/rss/'
 
 # xml_data  = requests.get(link, headers=headers).content
@@ -105,7 +108,8 @@ full_content = uni_parserd_2(search_link)
 
 full_title = full_content[0]
 full_content = full_content[1]
-# для сайта https://www.ye02.ru/rss.xml
+
+# для сайта https://www.ye02.ru/rss.xml ВСЕ КАТЕГОРИИ
 link_3 = 'https://www.ye02.ru/rss.xml'
 
 def uni_parserd_3(link):
@@ -138,9 +142,85 @@ def uni_parserd_4(link):
 content_4 = uni_parserd_3(link_3)
 full_title_4 = content_4[0]
 full_content_4 = content_4[1]
+
+# для сайта https://bashgazet.ru/articles/-bi-t-m-m-ni-t КУЛЬТУРА
+
+link_5 = 'https://bashgazet.ru/articles/-bi-t-m-m-ni-t'
+
+# создали список ссылок на статьи
+def search_links_5(link):
+    url = requests.get(link)
+
+    soup = BeautifulSoup(url.content, 'html.parser')
+    dom = etree.HTML(str(soup))
+    all_links = dom.xpath('//a[@class="item item"]/@href')
+    return all_links
+
+full_link_list_5 = []
+def uni_parserd_5(link):
+    for item in link:
+        if item not in full_link_list_5:
+            full_link = 'https://bashgazet.ru'+item
+            full_link_list_5.append(full_link)
+    # print(full_link_list_5)
+    title = []
+    content = []
+    for elem in full_link_list_5:
+        url = requests.get(elem)
+        soup = BeautifulSoup(url.content, 'html.parser')
+        all_content = soup.find_all('body')
+        for j in all_content:
+            title.append(j.find('h1', class_='h1').text)
+            content.append(j.find('div', class_='paragraph serif-text').text)
+    return title, content
+#
+search_link_5 = search_links_5(link_5)
+full_content_5 = uni_parserd_5(search_link_5)
+
+full_title_5 = full_content_5[0]
+full_content_5 = full_content_5[1]
+
+# для сайта https://ataisal.com/articles/m-ni-t КУЛЬТУРА
+
+
+link_6 = 'https://ataisal.com/articles/m-ni-t'
+
+# создали список ссылок на статьи
+def search_links_6(link):
+    url = requests.get(link)
+
+    soup = BeautifulSoup(url.content, 'html.parser')
+    dom = etree.HTML(str(soup))
+    all_links = dom.xpath('//a[@class="item item"]/@href')
+    return all_links
+
+full_link_list_6 = []
+def uni_parserd_6(link):
+    for item in link:
+        if item not in full_link_list_6:
+            full_link = 'https://bashgazet.ru'+item
+            full_link_list_6.append(full_link)
+    title = []
+    content = []
+    for elem in full_link_list_6:
+        url = requests.get(elem)
+        soup = BeautifulSoup(url.content, 'html.parser')
+        all_content = soup.find_all('body')
+        for j in all_content:
+            title.append(j.find('h1', class_='h1').text)
+            content.append(j.find('div', class_='paragraph serif-text').text)
+    return title, content
+#
+search_link_6 = search_links_6(link_6)
+full_content_6 = uni_parserd_6(search_link_6)
+
+full_title_6 = full_content_6[0]
+full_content_6 = full_content_6[1]
+
+
 # сбор всех заголовков и текстов в один список, для премещения в словарь
-title_list = uni_parserd(list_link)[0] + full_title + full_title_3 + full_title_4
-content_list = uni_parserd(list_link)[1] + full_content + full_content_3 + full_content_4
+title_list = uni_parserd(list_link)[0] + full_title + full_title_3 + full_title_4 + full_title_5
+content_list = uni_parserd(list_link)[1] + full_content + full_content_3 + full_content_4 + full_content_5
 print(len(title_list))
 print(len(content_list))
 all_dict = {'Title': title_list, 'Content': content_list}
