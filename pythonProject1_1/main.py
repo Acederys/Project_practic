@@ -155,9 +155,9 @@ full_content_5 = full_body_5[1]
 list_cat_5 =search_cat_5(full_title_5)
 
 
-# для сайта https://ataisal.com/articles/m-ni-t КУЛЬТУРА
+# для сайта https://ataisal.com/articles/ekologiya ЭКОЛОГИЯ
 
-link_6 = 'https://ataisal.com/articles/m-ni-t'
+link_6 = 'https://ataisal.com/articles/ekologiya'
 
 # создали список ссылок на статьи
 def search_links_6(link):
@@ -173,7 +173,7 @@ def uni_parserd_6(link):
     full_link_list_6 = []
     for item in link:
         if item not in full_link_list_6:
-            full_link = 'https://bashgazet.ru'+item
+            full_link = 'https://ataisal.com'+item
             full_link_list_6.append(full_link)
     title = []
     content = []
@@ -191,7 +191,7 @@ def search_cat_6(full_title):
     i=0
     for i in range(len(full_title)):
         i+=1
-        catgory_2.append('мәҙәниәт')
+        catgory_2.append('Экологияһ')
     return catgory_2
 
 search_link_6 = search_links_6(link_6)
