@@ -233,7 +233,7 @@ title_list = full_title_1 + full_title_2 + full_title_3 + full_title_5 + full_ti
 content_list = full_title_1 + full_content_2 + full_content_3 + full_content_5 + full_content_6 + full_content_7 + full_content_8 + full_content_9 + full_content_10 + full_content_11 + full_content_12
 category_list = list_cat_2 + list_cat_1 + list_cat_3 + list_cat_5 + list_cat_6 + list_cat_7 + list_cat_8 + list_cat_9 + list_cat_10 + list_cat_11 + list_cat_12
 all_dict = {'Title': title_list, 'Content': content_list, 'Category': category_list}
-
+# собираем все в файл
 content_frame = pd.DataFrame(all_dict)
 
 content_frame.to_csv (r'result.csv', index= False )
