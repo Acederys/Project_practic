@@ -90,10 +90,37 @@ from lxml import etree
 # для сайта https://gulshat1.ucoz.net/news/rss/ ВСЕ КАТЕГОРИИ
 
 
-link_6 = 'https://ataisal.com/articles/m-ni-t'
+# link_4 = 'https://misrbash.moy.su/news/rss/'
+#
+# def uni_parserd_4(link):
+#     url = requests.get(link)
+#     soup = BeautifulSoup(url.content, 'xml')
+#     all_item = soup.find_all('item')
+#     title = []
+#     content = []
+#     for k in all_item:
+#         title.append(k.find('title').text)
+#         content.append(k.find('content:encoded').text)
+#     return title, content
+#
+# def search_cat_4(link):
+#     url = requests.get(link)
+#     soup = BeautifulSoup(url.content, 'xml')
+#     all_category = soup.find_all('item')
+#     print(all_category)
+#     cat_list = []
+#     for g in all_category:
+#         cat_list.append(g.find('category').text)
+#         print(cat_list)
+#
+# content_4 = uni_parserd_4(link_4)
+# full_title_4 = content_4[0]
+# full_content_4 = content_4[1]
+# list_category_4 = search_cat_4(link_4)
 
-# создали список ссылок на статьи
-def search_links_6(link):
+
+link_4 = 'https://ye102.ru/articles/pl'
+def search_links_1(link):
     url = requests.get(link)
 
     soup = BeautifulSoup(url.content, 'html.parser')
@@ -101,38 +128,34 @@ def search_links_6(link):
     all_links = dom.xpath('//a[@class="item item"]/@href')
     return all_links
 
-full_link_list_6 = []
-def uni_parserd_6(link):
+def uni_parserd_1(link):
+    full_link_list_1 = []
     for item in link:
-        if item not in full_link_list_6:
-            full_link = 'https://bashgazet.ru'+item
-            full_link_list_6.append(full_link)
+        if item not in full_link_list_1:
+            full_link = 'https://ye102.ru'+item
+            full_link_list_1.append(full_link)
     title = []
     content = []
-    for elem in full_link_list_6:
+    for elem in full_link_list_1:
         url = requests.get(elem)
         soup = BeautifulSoup(url.content, 'html.parser')
         all_content = soup.find_all('body')
+        print(all_content)
         for j in all_content:
             title.append(j.find('h1', class_='h1').text)
-            content.append(j.find('div', class_='paragraph serif-text').text)
-    return title, content
+            content.append(j.find('div', class_='paragraph serif-text'))
+    print(title, content)
 
-def search_cat_6(full_title):
+def search_cat_8(full_title):
     catgory_2 =[]
     i=0
     for i in range(len(full_title)):
         i+=1
-        catgory_2.append('мәҙәниәт')
+        catgory_2.append('Сәйәсәт һәм хоҡуҡ')
     return catgory_2
+search_link_4 = search_links_1(link_4)
+full_body_4 = uni_parserd_1(search_link_4)
 
-search_link_6 = search_links_6(link_6)
-full_content_6 = uni_parserd_6(search_link_6)
-
-full_title_6 = full_content_6[0]
-full_content_6 = full_content_6[1]
-list_cat_6 = search_cat_6(full_title_6)
-
-print(len(full_title_6))
-print(len(full_content_6))
-print(len(list_cat_6))
+full_title_4 = full_body_4[0]
+full_content_4 = full_body_4[1]
+list_cat_4 = search_cat_8(full_title_4)
