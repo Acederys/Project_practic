@@ -6,22 +6,38 @@ from lxml import etree
 
 # все ссылки
 # общество
-link_1 = 'https://ye102.ru/articles/obschestvo'
-link_2 = 'https://ye102.ru/articles/pl'
-link_3 = 'https://ye102.ru/articles/ek'
-link_4 = 'https://ye102.ru/articles/litra'
-link_5 = 'https://ye102.ru/articles/konkurs'
-link_6 = 'https://ye102.ru/articles/obrazovanie'
-link_7 = 'https://ye102.ru/articles/ht'
-link_8 = 'https://ye102.ru/articles/zd'
-link_9 = 'https://ye102.ru/articles/iman'
-link_10 = 'https://ye102.ru/articles/pd'
-link_11 = 'https://ye102.ru/articles/mahsus'
-link_12 = 'https://ye102.ru/articles/sport'
-link_13 = 'https://ye102.ru/articles/guzel'
-link_14 = 'https://ye102.ru/articles/novosti'
-link_15 = 'https://ye102.ru/articles/ya-yly-tar-ta-ma-y-netu'
-
+link_1 = 'https://ataisal.com/articles/-bi-m-khit'
+link_2 = 'https://ataisal.com/articles/zamandash'
+link_3 = 'https://ataisal.com/articles/-tt-n-tysh-kh-l'
+link_4 = 'https://ataisal.com/articles/bayramdar'
+link_5 = 'https://ataisal.com/articles/konkurstar'
+link_6 = 'https://ataisal.com/articles/m-arif'
+link_7 = 'https://ataisal.com/articles/matbu-at'
+link_8 = 'https://ataisal.com/articles/m-ni-t'
+link_9 = 'https://ataisal.com/articles/s-y-s-t'
+link_10 = 'https://ataisal.com/articles/sotsial-m-khit'
+link_11 = 'https://ataisal.com/articles/t-b-k-ulyshy'
+link_12 = 'https://ataisal.com/articles/feker'
+link_13 = 'https://ataisal.com/articles/kho-u'
+link_14 = 'https://ataisal.com/articles/auly-a-lau'
+link_15 = 'https://ataisal.com/articles/yal-minuttary'
+link_16 = 'https://ataisal.com/articles/sh-khes'
+link_17 = 'https://ataisal.com/articles/k-el-t-ren-n'
+link_18 = 'https://ataisal.com/articles/m-kh-rrir-e'
+link_19 = 'https://ataisal.com/articles/esh-yuarly'
+link_20 = 'https://ataisal.com/articles/-n-ri-bayramdar'
+link_21 = 'https://ataisal.com/articles/y-nsellek'
+link_22 = 'https://ataisal.com/articles/i-t-lekle-datalar'
+link_23 = 'https://ataisal.com/articles/auyl-khuzhaly-y'
+link_24 = 'https://ataisal.com/articles/ekologiya'
+link_25 = 'https://ataisal.com/articles/khe-m-tt-kh-rm-t'
+link_26 = 'https://ataisal.com/articles/t-rbi'
+link_27 = 'https://ataisal.com/articles/uly-dan-y-n'
+link_28 = 'https://ataisal.com/articles/ala-tormosho'
+link_29 = 'https://ataisal.com/articles/k-rk-m-khanymdar'
+link_30 = 'https://ataisal.com/articles/milli-proekttar'
+link_31 = 'https://ataisal.com/articles/khuzhabik-g'
+link_32 = 'https://ataisal.com/articles/k-n-k-m-s-l'
 
 def search_links(link):
     url = requests.get(link)
@@ -36,7 +52,7 @@ def uni_parserd_ye102(link):
     new_list=list()
     for item in link:
         if item not in full_link_list:
-            full_link = 'https://ye102.ru'+item
+            full_link = 'https://ataisal.com'+item
             full_link_list.append(full_link)
     for elem in full_link_list:
         url = requests.get(elem)
@@ -93,6 +109,25 @@ search_link_12 = search_links(link_12)
 search_link_13 = search_links(link_13)
 search_link_14 = search_links(link_14)
 search_link_15 = search_links(link_15)
+search_link_16 = search_links(link_16)
+search_link_17 = search_links(link_17)
+search_link_18 = search_links(link_18)
+search_link_19 = search_links(link_19)
+search_link_20 = search_links(link_20)
+search_link_21 = search_links(link_21)
+search_link_22 = search_links(link_22)
+search_link_23 = search_links(link_23)
+search_link_24 = search_links(link_24)
+search_link_25 = search_links(link_25)
+search_link_26 = search_links(link_26)
+search_link_27 = search_links(link_27)
+search_link_28 = search_links(link_28)
+search_link_29 = search_links(link_29)
+search_link_30 = search_links(link_30)
+search_link_31 = search_links(link_31)
+search_link_32 = search_links(link_32)
+
+
 
 full_body_1 = uni_parserd_ye102(search_link_1)
 full_body_2 = uni_parserd_ye102(search_link_2)
@@ -109,8 +144,25 @@ full_body_12 = uni_parserd_ye102(search_link_12)
 full_body_13 = uni_parserd_ye102(search_link_13)
 full_body_14 = uni_parserd_ye102(search_link_14)
 full_body_15 = uni_parserd_ye102(search_link_15)
+full_body_16 = uni_parserd_ye102(search_link_16)
+full_body_17 = uni_parserd_ye102(search_link_17)
+full_body_18 = uni_parserd_ye102(search_link_18)
+full_body_19 = uni_parserd_ye102(search_link_19)
+full_body_20 = uni_parserd_ye102(search_link_20)
+full_body_21 = uni_parserd_ye102(search_link_21)
+full_body_22 = uni_parserd_ye102(search_link_22)
+full_body_23 = uni_parserd_ye102(search_link_23)
+full_body_24 = uni_parserd_ye102(search_link_24)
+full_body_25 = uni_parserd_ye102(search_link_25)
+full_body_26 = uni_parserd_ye102(search_link_26)
+full_body_27 = uni_parserd_ye102(search_link_27)
+full_body_28 = uni_parserd_ye102(search_link_28)
+full_body_29 = uni_parserd_ye102(search_link_29)
+full_body_30 = uni_parserd_ye102(search_link_30)
+full_body_31 = uni_parserd_ye102(search_link_31)
+full_body_32 = uni_parserd_ye102(search_link_32)
 
-full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7 + full_body_8 + full_body_10 + full_body_11 + full_body_12 + full_body_13 + full_body_14 + full_body_15
+full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7 + full_body_8 + full_body_10 + full_body_11 + full_body_12 + full_body_13 + full_body_14 + full_body_15 +full_body_16 + full_body_17 + full_body_18 + full_body_19 + full_body_20 + full_body_21 + full_body_22 + full_body_23 + full_body_24 + full_body_25 +full_body_26 + full_body_27 + full_body_28 + full_body_29 + full_body_30 + full_body_31 + full_body_32
 # print(full_list)
 # with open(r'result_ye102.csv','w', encoding='utf-8', newline='') as results:
 #     writer = csv.writer(results, delimiter=',', quoting=csv.QUOTE_MINIMAL)
@@ -118,7 +170,7 @@ full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 
 #         writer.writerow(item.values())
 # csv header
 fieldnames = ['url', 'title', 'content', 'data', 'category', 'tags']
-with open(r'result_ye102.csv', 'w', encoding='UTF8', newline='') as f:
+with open(r'result_ataisal.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(full_list)

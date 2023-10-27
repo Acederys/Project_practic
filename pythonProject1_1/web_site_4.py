@@ -6,21 +6,21 @@ from lxml import etree
 
 # все ссылки
 # общество
-link_1 = 'https://ye102.ru/articles/obschestvo'
-link_2 = 'https://ye102.ru/articles/pl'
-link_3 = 'https://ye102.ru/articles/ek'
-link_4 = 'https://ye102.ru/articles/litra'
-link_5 = 'https://ye102.ru/articles/konkurs'
+link_1 = 'https://bash.bashinform.ru/news/social'
+link_2 = 'https://bash.bashinform.ru/news/sport'
+link_3 = 'https://bash.bashinform.ru/news/economy'
+link_4 = 'https://bash.bashinform.ru/news/law'
+link_5 = 'https://bash.bashinform.ru/news/culture'
 link_6 = 'https://ye102.ru/articles/obrazovanie'
-link_7 = 'https://ye102.ru/articles/ht'
-link_8 = 'https://ye102.ru/articles/zd'
-link_9 = 'https://ye102.ru/articles/iman'
-link_10 = 'https://ye102.ru/articles/pd'
-link_11 = 'https://ye102.ru/articles/mahsus'
-link_12 = 'https://ye102.ru/articles/sport'
-link_13 = 'https://ye102.ru/articles/guzel'
-link_14 = 'https://ye102.ru/articles/novosti'
-link_15 = 'https://ye102.ru/articles/ya-yly-tar-ta-ma-y-netu'
+link_7 = 'https://bash.bashinform.ru/news/politics'
+# link_8 = 'https://ye102.ru/articles/zd'
+# link_9 = 'https://ye102.ru/articles/iman'
+# link_10 = 'https://ye102.ru/articles/pd'
+# link_11 = 'https://ye102.ru/articles/mahsus'
+# link_12 = 'https://ye102.ru/articles/sport'
+# link_13 = 'https://ye102.ru/articles/guzel'
+# link_14 = 'https://ye102.ru/articles/novosti'
+# link_15 = 'https://ye102.ru/articles/ya-yly-tar-ta-ma-y-netu'
 
 
 def search_links(link):
@@ -36,7 +36,7 @@ def uni_parserd_ye102(link):
     new_list=list()
     for item in link:
         if item not in full_link_list:
-            full_link = 'https://ye102.ru'+item
+            full_link = 'https://bash.bashinform.ru'+item
             full_link_list.append(full_link)
     for elem in full_link_list:
         url = requests.get(elem)
@@ -85,14 +85,14 @@ search_link_4 = search_links(link_4)
 search_link_5 = search_links(link_5)
 search_link_6 = search_links(link_6)
 search_link_7 = search_links(link_7)
-search_link_8 = search_links(link_8)
-search_link_9 = search_links(link_9)
-search_link_10 = search_links(link_10)
-search_link_11 = search_links(link_11)
-search_link_12 = search_links(link_12)
-search_link_13 = search_links(link_13)
-search_link_14 = search_links(link_14)
-search_link_15 = search_links(link_15)
+# search_link_8 = search_links(link_8)
+# search_link_9 = search_links(link_9)
+# search_link_10 = search_links(link_10)
+# search_link_11 = search_links(link_11)
+# search_link_12 = search_links(link_12)
+# search_link_13 = search_links(link_13)
+# search_link_14 = search_links(link_14)
+# search_link_15 = search_links(link_15)
 
 full_body_1 = uni_parserd_ye102(search_link_1)
 full_body_2 = uni_parserd_ye102(search_link_2)
@@ -101,16 +101,16 @@ full_body_4 = uni_parserd_ye102(search_link_4)
 full_body_5 = uni_parserd_ye102(search_link_5)
 full_body_6 = uni_parserd_ye102(search_link_6)
 full_body_7 = uni_parserd_ye102(search_link_7)
-full_body_8 = uni_parserd_ye102(search_link_8)
-full_body_9 = uni_parserd_ye102(search_link_9)
-full_body_10 = uni_parserd_ye102(search_link_10)
-full_body_11 = uni_parserd_ye102(search_link_11)
-full_body_12 = uni_parserd_ye102(search_link_12)
-full_body_13 = uni_parserd_ye102(search_link_13)
-full_body_14 = uni_parserd_ye102(search_link_14)
-full_body_15 = uni_parserd_ye102(search_link_15)
+# full_body_8 = uni_parserd_ye102(search_link_8)
+# full_body_9 = uni_parserd_ye102(search_link_9)
+# full_body_10 = uni_parserd_ye102(search_link_10)
+# full_body_11 = uni_parserd_ye102(search_link_11)
+# full_body_12 = uni_parserd_ye102(search_link_12)
+# full_body_13 = uni_parserd_ye102(search_link_13)
+# full_body_14 = uni_parserd_ye102(search_link_14)
+# full_body_15 = uni_parserd_ye102(search_link_15)
 
-full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7 + full_body_8 + full_body_10 + full_body_11 + full_body_12 + full_body_13 + full_body_14 + full_body_15
+full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7
 # print(full_list)
 # with open(r'result_ye102.csv','w', encoding='utf-8', newline='') as results:
 #     writer = csv.writer(results, delimiter=',', quoting=csv.QUOTE_MINIMAL)
@@ -118,7 +118,7 @@ full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 
 #         writer.writerow(item.values())
 # csv header
 fieldnames = ['url', 'title', 'content', 'data', 'category', 'tags']
-with open(r'result_ye102.csv', 'w', encoding='UTF8', newline='') as f:
+with open(r'result_bash.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(full_list)
