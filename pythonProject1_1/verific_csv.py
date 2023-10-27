@@ -17,7 +17,7 @@ def row_reader(file_f):
             lid_result = model.predict(row_str, 3)
             # print(lid_result[0][0], type(lid_result[0][0]))
             if lid_result[0][0] == '__label__ba':
-                # print(lid_result[0][0], row)
+                # print(lid_result, row)
                 dict_content = {
                     'url': row[0],
                     'title': row[1],
