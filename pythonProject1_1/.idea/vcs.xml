@@ -3,5 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pyfasttext" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pyfasttext/src/fastText" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pyfasttext/src/variant" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pyfasttext/src/variant/.mason" vcs="Git" />
   </component>
 </project>
