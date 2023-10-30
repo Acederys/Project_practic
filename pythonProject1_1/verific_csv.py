@@ -1,7 +1,7 @@
 import fasttext
 import csv
 model = fasttext.load_model('pyfasttext/models/lid.176.bin')
-# classifier = pipeline('text-classification','slone/fastText-LID-323')
+
 clear_row = list()
 
 file_1 = 'result_ataisal.csv'
@@ -15,17 +15,17 @@ def row_reader(file_f):
         for row in reader:
             row_str = row[2].strip().replace('\n',' ')
             lid_result = model.predict(row_str, 3)
-            # print(lid_result[0][0], type(lid_result[0][0]))
             if lid_result[0][0] == '__label__ba':
-                # print(lid_result, row)
                 dict_content = {
                     'url': row[0],
                     'title': row[1],
-                    'content': row[2],
-                    'data': row[3],
-                    'category': row[4],
-                    'tags': row[5]
+                    'lead': row[2],
+                    'content': row[3],
+                    'data': row[4],
+                    'category': row[5],
+                    'tags': row[6]
                 }
+
                 clear_row.append(dict_content)
     return clear_row
 
@@ -36,7 +36,7 @@ result_kulturarb = row_reader(file_4)
 result_ye102 = row_reader(file_5)
 
 full_result = result_ataisal + result_bash + result_bashgazet + result_kulturarb + result_ye102
-fieldnames = ['url', 'title', 'content', 'data', 'category', 'tags']
+fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
 with open(r'clear_result.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()

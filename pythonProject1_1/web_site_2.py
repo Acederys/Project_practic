@@ -86,7 +86,8 @@ def uni_parserd_ye102(link):
             dict_content = {
                 'url': elem,
                 'title': title,
-                'content': lead + ' ' +text,
+                'lead': lead,
+                'content': text,
                 'data': data,
                 'category': category,
                 'tags': tags
@@ -163,13 +164,8 @@ full_body_31 = uni_parserd_ye102(search_link_31)
 full_body_32 = uni_parserd_ye102(search_link_32)
 
 full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7 + full_body_8 + full_body_10 + full_body_11 + full_body_12 + full_body_13 + full_body_14 + full_body_15 +full_body_16 + full_body_17 + full_body_18 + full_body_19 + full_body_20 + full_body_21 + full_body_22 + full_body_23 + full_body_24 + full_body_25 +full_body_26 + full_body_27 + full_body_28 + full_body_29 + full_body_30 + full_body_31 + full_body_32
-# print(full_list)
-# with open(r'result_ye102.csv','w', encoding='utf-8', newline='') as results:
-#     writer = csv.writer(results, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-#     for item in full_list:
-#         writer.writerow(item.values())
-# csv header
-fieldnames = ['url', 'title', 'content', 'data', 'category', 'tags']
+
+fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
 with open(r'result_bashgazet.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()

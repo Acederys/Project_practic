@@ -5,7 +5,7 @@ import pandas as pd
 from lxml import etree
 
 # все ссылки
-# общество
+
 link_1 = 'https://ye102.ru/articles/obschestvo'
 link_2 = 'https://ye102.ru/articles/pl'
 link_3 = 'https://ye102.ru/articles/ek'
@@ -70,7 +70,8 @@ def uni_parserd_ye102(link):
             dict_content = {
                 'url': elem,
                 'title': title,
-                'content': lead + ' ' +text,
+                'lead': lead,
+                'content': text,
                 'data': data,
                 'category': category,
                 'tags': tags
@@ -111,13 +112,8 @@ full_body_14 = uni_parserd_ye102(search_link_14)
 full_body_15 = uni_parserd_ye102(search_link_15)
 
 full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_6 + full_body_7 + full_body_8 + full_body_10 + full_body_11 + full_body_12 + full_body_13 + full_body_14 + full_body_15
-# print(full_list)
-# with open(r'result_ye102.csv','w', encoding='utf-8', newline='') as results:
-#     writer = csv.writer(results, delimiter=',', quoting=csv.QUOTE_MINIMAL)
-#     for item in full_list:
-#         writer.writerow(item.values())
-# csv header
-fieldnames = ['url', 'title', 'content', 'data', 'category', 'tags']
+
+fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
 with open(r'result_ye102.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
