@@ -1,7 +1,7 @@
 import fasttext
 import csv
 model = fasttext.load_model('pyfasttext/models/lid.176.bin')
-file = ['result_ataisal.csv', 'result_bash.csv', 'result_bashgazet.csv','result_kulturarb.csv', 'result_ye102.csv']
+file = ['result_ataisal.csv', 'result_bash.csv', 'result_bashgazet.csv', 'result_kulturarb.csv', 'result_kulturarb_1.csv', 'result_kulturarb_2.csv', 'result_kulturarb_3.csv', 'result_kulturarb_4.csv', 'result_ye102.csv']
 
 clear_full_url = list()
 for url in file:
@@ -12,7 +12,7 @@ for url in file:
                 'url': row[0],
                 'title': row[1],
                 'lead': row[2],
-                'contgient': row[3],
+                'content': row[3],
                 'data': row[4],
                 'category': row[5],
                 'tags': row[6]
@@ -27,7 +27,7 @@ for elem in clear_full_url:
         list_item.append(elem)
 
 fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
-with open(r'clear_result_test.csv', 'w', encoding='UTF8', newline='') as f:
+with open(r'all_result.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(list_item)
