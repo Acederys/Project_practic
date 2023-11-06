@@ -12,7 +12,7 @@ for url in file:
                 'url': row[0],
                 'title': row[1],
                 'lead': row[2],
-                'content': row[3],
+                'contgient': row[3],
                 'data': row[4],
                 'category': row[5],
                 'tags': row[6]

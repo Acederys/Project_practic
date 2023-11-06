@@ -5,13 +5,7 @@ import csv
 from lxml import etree
 
 # все ссылки
-link_1 = 'https://bash.bashinform.ru/news/social'
-link_2 = 'https://bash.bashinform.ru/news/sport'
-link_3 = 'https://bash.bashinform.ru/news/economy'
-link_4 = 'https://bash.bashinform.ru/news/law'
-link_5 = 'https://bash.bashinform.ru/news/culture'
-link_7 = 'https://bash.bashinform.ru/news/politics'
-
+links = ['https://bash.bashinform.ru/news/social']
 
 
 def search_links(link):
@@ -69,27 +63,17 @@ def uni_parserd_ye102(link):
             }
             new_list.append(dict_content)
     return new_list
+full_list = list()
+for url in links:
+    search_link = search_links(url)
+    full_body = uni_parserd_ye102(search_link)
 
-search_link_1 = search_links(link_1)
-search_link_2 = search_links(link_2)
-search_link_3 = search_links(link_3)
-search_link_4 = search_links(link_4)
-search_link_5 = search_links(link_5)
-search_link_7 = search_links(link_7)
+    full_list.append(full_body)
 
-
-full_body_1 = uni_parserd_ye102(search_link_1)
-full_body_2 = uni_parserd_ye102(search_link_2)
-full_body_3 = uni_parserd_ye102(search_link_3)
-full_body_4 = uni_parserd_ye102(search_link_4)
-full_body_5 = uni_parserd_ye102(search_link_5)
-full_body_7 = uni_parserd_ye102(search_link_7)
-
-
-full_list = full_body_1 + full_body_2 + full_body_3 + full_body_4 + full_body_5 + full_body_7
-
-fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
-with open(r'result_bash.csv', 'w', encoding='UTF8', newline='') as f:
-    writer = csv.DictWriter(f, fieldnames=fieldnames)
-    writer.writeheader()
-    writer.writerows(full_list)
+for item in full_list:
+    print(item)
+# fieldnames = ['url', 'title', 'lead', 'content', 'data', 'category', 'tags']
+# with open(r'result_bash.csv', 'w', encoding='UTF8', newline='') as f:
+#     writer = csv.DictWriter(f, fieldnames=fieldnames)
+#     writer.writeheader()
+#     writer.writerows(full_list)

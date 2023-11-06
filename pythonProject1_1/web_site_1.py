@@ -5,7 +5,6 @@ import pandas as pd
 from lxml import etree
 
 # все ссылки
-
 link_1 = 'https://ye102.ru/articles/obschestvo'
 link_2 = 'https://ye102.ru/articles/pl'
 link_3 = 'https://ye102.ru/articles/ek'
